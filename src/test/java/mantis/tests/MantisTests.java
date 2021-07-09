@@ -45,6 +45,17 @@ public class MantisTests {
         Thread.sleep(1000);
     }
 
+    @Test
+    public void issuesCountTest() throws InterruptedException {
+        mantisSite = new MantisSite(driver);
+        mantisSite.login("admin", "admin20");
+        mantisSite.getMainPage().goToViewIssuePage();
+
+        Integer actualListSize = mantisSite.getViewIssuesPage().getIssuesCount();
+        Assertions.assertEquals(50, actualListSize);
+        Thread.sleep(1000);
+    }
+
     @AfterEach
     public void tearDown() {
         driver.quit();
